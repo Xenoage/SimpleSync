@@ -8,7 +8,8 @@ package com.xenoage.labs.sync.server;
 public interface ServerFileItem {
 
 	/**
-	 * Gets the directory path to this item, e.g. "a/b/" for the file "a/b/c.txt".
+	 * Gets the full path of this item.
+	 * Examples: "/a/b/c.txt" for a file, "/a/b/" for a directory or "/" for the root.
 	 */
-	public String getDirPath();
+	public String getPath();
 }

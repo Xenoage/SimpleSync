@@ -16,10 +16,11 @@ public class ServerDir
 	public String name = null;
 	public List<ServerFileItem> items = new ArrayList<>();
 	
-	@Override public String getDirPath() {
+	@Override public String getPath() {
 		if (parent == null)
-			return ""; //root dir has no name
+			return "/"; //root
 		else
-			return parent.getDirPath() + name + "/";
+			return parent.getPath() + name + "/";
 	}
+
 }

@@ -10,13 +10,10 @@ public class ServerFile
 
 	public ServerDir parent = null;
 	public String name = null;
-	public String md5sum = null;
+	public String md5 = null;
 
 
-	@Override public String getDirPath() {
-		if (parent == null)
-			return ""+name;
-		else
-			return parent.getDirPath();
+	@Override public String getPath() {
+		return parent.getPath() + name;
 	}
 }
