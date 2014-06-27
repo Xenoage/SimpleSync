@@ -15,7 +15,7 @@
 		<file name="gson-license.txt" md5="2b3e755048090c6df5fa117ee03b7357"/>
 	</fileset>
 	<!-- gwt -->
-	<file name="gwt-servlet.jar" md5="d1d1a7b60f7a445688e89206a608c5ed" sourcedir="gwt/2.5.1/" targetdir="../webapp/war/WEB-INF/lib/"/>
+	<file name="gwt-servlet.jar" md5="d1d1a7b60f7a445688e89206a608c5ed" sourcedir="gwt/2.5.1/" targetdir="lib/webapp/war/WEB-INF/lib/"/>
 	<!-- h2 -->
 	<fileset sourcedir="h2/1.3.174/">
 		<file name="h2-1.3.174.jar" md5="b58be0d7d5e04ccfec0ac9ad214d9f7a"/>
