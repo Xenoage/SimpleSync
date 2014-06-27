@@ -1,4 +1,4 @@
-package com.xenoage.labs.sync.local;
+package com.xenoage.simplesync.local;
 
 import java.util.ArrayList;
 import java.util.List;

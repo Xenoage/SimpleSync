@@ -1,4 +1,4 @@
-package com.xenoage.labs.sync.local;
+package com.xenoage.simplesync.local;
 
 import static com.xenoage.utils.jse.xml.XMLReader.attribute;
 import static com.xenoage.utils.jse.xml.XMLReader.element;
@@ -44,7 +44,7 @@ public class LocalIndex
 	
 	private static void parseClean(Element e, LocalClean clean) {
 		for (Element eChild : elements(e)) {
-			if (eChild.getLocalName().equals("dir")) {
+			if (eChild.getNodeName().equals("dir")) {
 				String name = attribute(eChild, "name");
 				if (name == null)
 					throw new IllegalStateException("dir without name in clean");
@@ -60,13 +60,13 @@ public class LocalIndex
 		set.targetDir = attribute(e, "targetdir");
 		//read children
 		for (Element eChild : elements(e)) {
-			if (eChild.getLocalName().equals("fileset")) {
+			if (eChild.getNodeName().equals("fileset")) {
 				LocalFileSet childSet = new LocalFileSet();
 				childSet.parent = set;
 				parseFileSet(eChild, childSet);
 				set.items.add(childSet);
 			}
-			else if (eChild.getLocalName().equals("file")) {
+			else if (eChild.getNodeName().equals("file")) {
 				LocalFile childFile = new LocalFile();
 				childFile.parent = set;
 				parseFile(eChild, childFile);
@@ -86,6 +86,10 @@ public class LocalIndex
 		if (md5 == null)
 			throw new IllegalStateException("file without md5: " + file.name);
 		file.md5 = md5;
+		//read sourcedir (may be null)
+		file.sourceDir = attribute(e, "sourcedir");
+		//read targetdir (may be null)
+		file.targetDir = attribute(e, "targetdir");
 	}
 
 }

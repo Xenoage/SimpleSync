@@ -1,4 +1,4 @@
-package com.xenoage.labs.sync.server;
+package com.xenoage.simplesync.server;
 
 /**
  * Information about a file on the server.

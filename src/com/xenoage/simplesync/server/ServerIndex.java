@@ -1,4 +1,4 @@
-package com.xenoage.labs.sync.server;
+package com.xenoage.simplesync.server;
 
 import static com.xenoage.utils.jse.xml.XMLReader.elements;
 import static com.xenoage.utils.jse.xml.XMLReader.root;
@@ -29,18 +29,18 @@ public class ServerIndex
 	private static void parseDir(Element e, ServerDir dir) {
 		//read name
 		String name = XMLReader.attribute(e, "name");
-		if (name == null)
+		if (name == null && (false == dir instanceof ServerIndex))
 			throw new IllegalStateException("dir without name: " + dir.getPath());
 		dir.name = name;
 		//read children
 		for (Element eChild : elements(e)) {
-			if (eChild.getLocalName().equals("dir")) {
+			if (eChild.getNodeName().equals("dir")) {
 				ServerDir childDir = new ServerDir();
 				childDir.parent = dir;
 				parseDir(eChild, childDir);
 				dir.items.add(childDir);
 			}
-			else if (eChild.getLocalName().equals("file")) {
+			else if (eChild.getNodeName().equals("file")) {
 				ServerFile childFile = new ServerFile();
 				childFile.parent = dir;
 				parseFile(eChild, childFile);
@@ -60,6 +60,21 @@ public class ServerIndex
 		if (md5 == null)
 			throw new IllegalStateException("file without md5: " + file.getPath());
 		file.md5 = md5;
+	}
+	
+	/**
+	 * Gets the file at the given path, or null if the file does not exist.
+	 */
+	public ServerFile getFile(String filePath) {
+		//remove leading or trailing "/"
+		while (filePath.startsWith("/"))
+			filePath = filePath.substring(2);
+		while (filePath.endsWith("/"))
+			filePath = filePath.substring(0, filePath.length() - 1);
+		//remove double "/"
+		filePath = filePath.replaceAll("//", "/");
+		//search file
+		return findFile(filePath.split("/"), 0);
 	}
 	
 }

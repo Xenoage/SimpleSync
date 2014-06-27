@@ -1,4 +1,6 @@
-package com.xenoage.labs.sync.local;
+package com.xenoage.simplesync.local;
+
+import java.util.List;
 
 /**
  * Base class for a {@link LocalFile} or {@link LocalFileSet}.
@@ -15,27 +17,32 @@ public abstract class LocalFileItem {
 	
 	/**
 	 * Gets the (maybe inherited) source directory of this item,
-	 * or null if undefined.
+	 * or "./" if undefined.
 	 */
 	public String getSourceDir() {
 		if (sourceDir != null)
 			return sourceDir;
 		else if (parent == null)
-			return null;
+			return "./";
 		else
 			return parent.getSourceDir();
 	}
 	
 	/**
 	 * Gets the (maybe inherited) target directory of this item,
-	 * or null if undefined.
+	 * or "./" if undefined.
 	 */
 	public String getTargetDir() {
 		if (targetDir != null)
 			return targetDir;
 		else if (parent == null)
-			return null;
+			return "./";
 		else
 			return parent.getTargetDir();
 	}
+	
+	/**
+	 * Gets all files of this item.
+	 */
+	public abstract List<LocalFile> getAllFiles();
 }
