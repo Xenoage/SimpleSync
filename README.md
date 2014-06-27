@@ -8,6 +8,7 @@ The file paths are given in the local configuration file sync.xml.
 
 Here is an example of the local sync.xml file:
 
+```xml
 <sync server="http://files.xenoage.com" targetdir="lib/">
   <!-- directories which to clean -->
   <clean>
@@ -21,13 +22,14 @@ Here is an example of the local sync.xml file:
     <file name="android-midi-lib-license.txt" md5="cafc597722cfad668c26d84e214993bb"/>
   </fileset>
 </sync>
+```
 
 On each level, the local targetdir and the sourcedir
 on the server can be defined. When missing, the directory from the parent
 level is used.
 
-Files, which are in the directories under <clean>, but are not listed in the files,
-will be removed. The <clean> element is optional. When it misses, no old files will be deleted,
+Files, which are in the directories under &lt;clean&gt;, but are not listed in the files,
+will be removed. The &lt;clean&gt; element is optional. When it misses, no old files will be deleted,
 but just updated if required.
 
 On the server side, the file sync.index is required at the root level
@@ -36,6 +38,7 @@ It lists the available directories, files and their md5 sums.
 
 Here is an example of the remote sync.index file:
 
+```xml
 <index>
   <dir name="android-midi-lib">
     <dir name="3.49">
@@ -49,5 +52,6 @@ Here is an example of the remote sync.index file:
     </dir>
   </dir>
 </index>
+```
 
 (c) 2014 by Andreas Wenger, Xenoage Software, info@xenoage.com
